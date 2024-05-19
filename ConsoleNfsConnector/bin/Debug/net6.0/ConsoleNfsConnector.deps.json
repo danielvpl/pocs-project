@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsoleNfsConnector/1.0.0": {
+        "dependencies": {
+          "NFS-Client": "1.0.0",
+          "NFSLibrary": "1.0.0.0"
+        },
+        "runtime": {
+          "ConsoleNfsConnector.dll": {}
+        }
+      },
+      "NFS-Client/1.0.0": {
+        "runtime": {
+          "NFSLibrary.dll": {}
+        }
+      },
+      "NFSLibrary/1.0.0.0": {
+        "runtime": {
+          "NFSLibrary.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleNfsConnector/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NFS-Client/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NFSLibrary/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

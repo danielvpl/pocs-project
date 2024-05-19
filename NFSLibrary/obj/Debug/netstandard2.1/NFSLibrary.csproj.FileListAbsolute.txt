@@ -1,0 +1,10 @@
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\bin\Debug\netstandard2.1\NFSLibrary.deps.json
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\bin\Debug\netstandard2.1\NFSLibrary.dll
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\bin\Debug\netstandard2.1\NFSLibrary.pdb
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.csproj.AssemblyReference.cache
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.AssemblyInfoInputs.cache
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.AssemblyInfo.cs
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.csproj.CoreCompileInputs.cache
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.dll
+D:\Projetos\Projetos_AvenueCode\pocs\NFS-Client\NFSLibrary\obj\Debug\netstandard2.1\NFSLibrary.pdb
