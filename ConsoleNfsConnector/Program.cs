@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-IPAddress nfsServerIP = IPAddress.Parse("142.44.227.192");
+IPAddress nfsServerIP = IPAddress.Parse("000.000.000.000"); // Server IP
 
 //var credentials = new NetworkCredential("<<user>>", "<<pass>>");
 

@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ConsoleGoogleCloudStorage
-build_property.ProjectDir = D:\Projetos\Projetos_AvenueCode\pocs\POCs-Project\ConsoleGoogleCloudStorage\
+build_property.ProjectDir = /Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

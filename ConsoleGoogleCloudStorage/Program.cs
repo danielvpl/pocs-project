@@ -1,12 +1,10 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Storage.V1;
-using System.Text;
+﻿using Google.Cloud.Storage.V1;
 
 public class Program
 {
     static void Main(string[] args)
     {
-        var client = StorageClient.Create();
+        /*var client = StorageClient.Create();
 
         // Create a bucket with a globally unique name
         var bucketName = Guid.NewGuid().ToString();
@@ -28,28 +26,38 @@ public class Program
         {
             client.DownloadObject(bucketName, "file1.txt", stream);
         }
+        */
 
-
-        /*try
+        try
         {
-            string bucketName = "seu-nome-de-bucket";
-            string sharedkeyFilePath = "caminho-para-seu-arquivo-de-credenciais.json";
-
-            var credential = GoogleCredential.FromJson(System.IO.File.ReadAllText(sharedkeyFilePath));
-            var storageClient = StorageClient.Create(credential);
-
-            string filetoUpload = "caminho-para-seu-arquivo.txt";
+            string bucketName = Guid.NewGuid().ToString();
+            //string sharedkeyFilePath = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/credentials.json";
+            
+            //var credential = GoogleCredential.FromJson(System.IO.File.ReadAllText(sharedkeyFilePath));
+            var storageClient = SetClientEndpoint("localhost:8081"); // StorageClient.Create();
+            
+            // TODO: Create GCP project reference
+            var bucket = storageClient.CreateBucket("CoolStorage", bucketName);
+            
+            string filetoUpload = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test.xml";
             using (var fileStream = new FileStream(filetoUpload, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                storageClient.UploadObject(bucketName, "demo.txt", "text/plain", fileStream);
+                storageClient.UploadObject(bucketName, "test.xml", "text/plain", fileStream);
             }
 
-            Console.WriteLine("Arquivo enviado com sucesso!");
+            Console.WriteLine("File uploaded successfuly!");
             Console.ReadLine();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro: {ex.Message}");
-        }*/
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
+    
+    private static StorageClient SetClientEndpoint(string endpoint) => new StorageClientBuilder
+    {
+        
+        BaseUri = endpoint,
+        UnauthenticatedAccess = true // Change for Production
+    }.Build();
 }
