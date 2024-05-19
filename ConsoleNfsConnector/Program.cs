@@ -9,7 +9,7 @@ string nfsRootPath = @"\nfs-storage/";
 var clientNfs = new NFSLibrary.NfsClient(NFSLibrary.NfsClient.NfsVersion.V4);
 
 // IP, UserId, GroupId, Timeout
-// ISSUE: Where can I put the user credentials!?
+// ISSUE: I cannot use the user credentials, to improve
 clientNfs.Connect(nfsServerIP, 267512, 287678, 10000);
 
 var directoryName = clientNfs.GetDirectoryName(nfsRootPath);
@@ -58,5 +58,5 @@ foreach (var file in files)
 }
 
 Console.WriteLine();
-Console.WriteLine("Processo de obtenção e leitura de arquivo finalizado.");
+Console.WriteLine("Finished.");
 Console.ReadKey();
