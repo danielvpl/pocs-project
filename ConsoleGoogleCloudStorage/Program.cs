@@ -34,10 +34,15 @@ public class Program
             //string sharedkeyFilePath = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/credentials.json";
             
             //var credential = GoogleCredential.FromJson(System.IO.File.ReadAllText(sharedkeyFilePath));
-            var storageClient = SetClientEndpoint("localhost:8081"); // StorageClient.Create();
+            var storageClient = SetClientEndpoint("http://localhost:8081"); // StorageClient.Create();
+            //var storageClient = StorageClient.Create();
             
             // TODO: Create GCP project reference
-            var bucket = storageClient.CreateBucket("CoolStorage", bucketName);
+            var bucket = storageClient.CreateBucket("gcppocs", bucketName, 
+                new CreateBucketOptions
+                {
+                    PredefinedAcl = PredefinedBucketAcl.PublicReadWrite
+                });
             
             string filetoUpload = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test.xml";
             using (var fileStream = new FileStream(filetoUpload, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -45,7 +50,7 @@ public class Program
                 storageClient.UploadObject(bucketName, "test.xml", "text/plain", fileStream);
             }
 
-            Console.WriteLine("File uploaded successfuly!");
+            Console.WriteLine("File uploaded successfully!");
             Console.ReadLine();
         }
         catch (Exception ex)
@@ -56,7 +61,6 @@ public class Program
     
     private static StorageClient SetClientEndpoint(string endpoint) => new StorageClientBuilder
     {
-        
         BaseUri = endpoint,
         UnauthenticatedAccess = true // Change for Production
     }.Build();
