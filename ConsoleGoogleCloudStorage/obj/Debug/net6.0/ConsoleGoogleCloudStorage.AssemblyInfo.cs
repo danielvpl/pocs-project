@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleGoogleCloudStorage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9414aa348974629d67686ebadb886bb198ec9084")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8f1c499f28c9e0f0e9f6c5e7f8b7982df884e50")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleGoogleCloudStorage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleGoogleCloudStorage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

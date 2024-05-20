@@ -30,19 +30,20 @@ public class Program
 
         try
         {
-            string bucketName = Guid.NewGuid().ToString();
+            string bucketName = "default-bucket"; // Guid.NewGuid().ToString();
             //string sharedkeyFilePath = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/credentials.json";
             
             //var credential = GoogleCredential.FromJson(System.IO.File.ReadAllText(sharedkeyFilePath));
             var storageClient = SetClientEndpoint("http://localhost:8081"); // StorageClient.Create();
             //var storageClient = StorageClient.Create();
             
-            // TODO: Create GCP project reference
-            var bucket = storageClient.CreateBucket("gcppocs", bucketName, 
+            // TODO: Creating a new bucket
+            /*string newBucketName = "default-bucket";
+            var bucket = storageClient.CreateBucket("gcppocs", newBucketName, 
                 new CreateBucketOptions
                 {
                     PredefinedAcl = PredefinedBucketAcl.PublicReadWrite
-                });
+                });*/
             
             string filetoUpload = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test.xml";
             using (var fileStream = new FileStream(filetoUpload, FileMode.Open, FileAccess.Read, FileShare.Read))
