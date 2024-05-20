@@ -16,6 +16,8 @@ public abstract class Program
         try
         {
             // Connection in Cloud 
+            // Utilizar o comando:  gcloud auth application-default login - Para autenticar no Google CLI
+            // These credentials will be used by any library that requests Application Default Credentials (ADC).
             var storageClient = StorageClient.Create();
 
             // Create a bucket with a globally unique name
