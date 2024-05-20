@@ -1,68 +1,72 @@
-﻿using Google.Cloud.Storage.V1;
+﻿using Google.Api.Gax;
+using Google.Cloud.Storage.V1;
 
-public class Program
+namespace ConsoleGoogleCloudStorage;
+
+public abstract class Program
 {
-    static void Main(string[] args)
+    private const string BUCKET_NAME = "sidecar-package";
+    private const string PROJECT_ID = "avenuecode-mc1";
+
+    private static void Main(string[] args)
     {
-        /*var client = StorageClient.Create();
-
-        // Create a bucket with a globally unique name
-        var bucketName = Guid.NewGuid().ToString();
-        var bucket = client.CreateBucket("pocsgcp", bucketName);
-
-        // Upload some files
-        var content = Encoding.UTF8.GetBytes("hello, world");
-        var obj1 = client.UploadObject(bucketName, "file1.txt", "text/plain", new MemoryStream(content));
-        var obj2 = client.UploadObject(bucketName, "folder1/file2.txt", "text/plain", new MemoryStream(content));
-
-        // List objects in the bucket
-        foreach (var obj in client.ListObjects(bucketName, ""))
-        {
-            Console.WriteLine(obj.Name);
-        }
-
-        // Download a file
-        using (var stream = File.OpenWrite("file1.txt"))
-        {
-            client.DownloadObject(bucketName, "file1.txt", stream);
-        }
-        */
+        // Set credentials
+        //string sharedkeyFilePath = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/credentials.json";
 
         try
         {
-            string bucketName = "default-bucket"; // Guid.NewGuid().ToString();
-            //string sharedkeyFilePath = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/credentials.json";
-            
-            //var credential = GoogleCredential.FromJson(System.IO.File.ReadAllText(sharedkeyFilePath));
-            var storageClient = SetClientEndpoint("http://localhost:8081"); // StorageClient.Create();
-            //var storageClient = StorageClient.Create();
-            
-            // TODO: Creating a new bucket
-            /*string newBucketName = "default-bucket";
-            var bucket = storageClient.CreateBucket("gcppocs", newBucketName, 
-                new CreateBucketOptions
-                {
-                    PredefinedAcl = PredefinedBucketAcl.PublicReadWrite
-                });*/
-            
-            string filetoUpload = "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test.xml";
-            using (var fileStream = new FileStream(filetoUpload, FileMode.Open, FileAccess.Read, FileShare.Read))
+            // Connection in Cloud 
+            var storageClient = StorageClient.Create();
+
+            // Create a bucket with a globally unique name
+            //var bucketName = Guid.NewGuid().ToString();
+            //var bucket = client.CreateBucket(projectId, bucketName);
+
+            // Upload a file
+            var fileToUpload =
+                "/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test.xml";
+            using (var fileStream = new FileStream(fileToUpload, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                storageClient.UploadObject(bucketName, "test.xml", "text/plain", fileStream);
+                var obj = storageClient.UploadObject(BUCKET_NAME, "test.xml", "application/xml", fileStream);
+            }
+            
+            // Another way to upload files
+            //var content = Encoding.UTF8.GetBytes("hello, world");
+            //var obj1 = storageClient.UploadObject(bucketName, "file1.txt", "text/plain", new MemoryStream(content));
+            
+            // List buckets
+            var buckets = storageClient.ListBuckets(PROJECT_ID);
+            foreach (var obj in buckets)
+            {
+                Console.WriteLine(obj.Name);
             }
 
-            Console.WriteLine("File uploaded successfully!");
-            Console.ReadLine();
+            // List objects in the bucket
+            foreach (var obj in storageClient.ListObjects(BUCKET_NAME, ""))
+            {
+                Console.WriteLine(obj.Name);
+            }
+            
+            // Download a file
+            using (var stream = File.OpenWrite("/Users/daniel.leon.br/Projects/pocs-project/ConsoleGoogleCloudStorage/files/test-downloaded.xml"))
+            {
+                storageClient.DownloadObject(BUCKET_NAME,"test.xml", stream);
+                Console.WriteLine("File downloaded successfully!");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine("Error! Details: " + ex.Message);
         }
     }
     
+    // To use local emulator storage, create and run emulator in port 9023, and use the
+    // SetClientEndpoint build method to create the StorageClient object
+    //https://github.com/oittaa/gcp-storage-emulator
     private static StorageClient SetClientEndpoint(string endpoint) => new StorageClientBuilder
     {
-        BaseUri = endpoint,
-        UnauthenticatedAccess = true // Change for Production
+        EmulatorDetection = EmulatorDetection.EmulatorOnly,
+        //BaseUri = endpoint,
+        //UnauthenticatedAccess = true, // Change for Production
     }.Build();
 }
